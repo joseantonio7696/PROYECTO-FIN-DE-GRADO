@@ -3,16 +3,17 @@
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat:  36.762321203158436, lng: -6.360140198937992},
-    zoom: 8,
-    /* mapId: "1cac0884531dcf94" */
+    center: { lat:  36.69393891837011, lng: -6.162670456368926},
+    zoom: 2,
+    mapId: "94a8842733055a35"
   });
 
-}
 
-  /* 
+   
+
+  
         const beachMarker = new google.maps.Marker({
-            position: { lat: 36.762525375799314, lng: -6.360237123939683 },
+            position: { lat: 36.69393891837011, lng: -6.162670456368926 },
             map,
         });
 
@@ -57,6 +58,6 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
       : "Error: Your browser doesn't support geolocation."
   );
   infoWindow.open(map);
-} */
+}
 
   

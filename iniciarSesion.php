@@ -1,17 +1,5 @@
 <?php
 session_start();
-
-include "./db_decatlon.php";
-
-$productoId=$_REQUEST["idProducto"];
-
-
-$consulta = mysqli_query($conexion, "SELECT * FROM producto WHERE producto_id =".$productoId) or
-                    die("Problemas en el select:" . mysqli_error($conexion));
-
-$row=mysqli_fetch_assoc($consulta);
-    
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,9 +15,10 @@ $row=mysqli_fetch_assoc($consulta);
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-
-
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link href="./estilos/estilosLogin.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -37,12 +26,8 @@ $row=mysqli_fetch_assoc($consulta);
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #0198f1 ">
         <div class="container-fluid">
             <a class="navbar-brand" href="./index.php">
-
                 <img src="imagenes/Decathlon_Logo.png" alt="" width="150" height="50">
-
             </a>
-
-
             <div class="dropdown">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
                     CATEGORIAS
@@ -58,7 +43,6 @@ $row=mysqli_fetch_assoc($consulta);
                     <li><a href="singular.jsp" class="list-group-item list-group-item-action ">Singular Wod</a></li>
                 </ul>
             </div>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <form class="d-flex" action="carritoCompras.jsp">
@@ -87,67 +71,57 @@ $row=mysqli_fetch_assoc($consulta);
                         <?php
                         }
                         ?>
-
-
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-
-
-
-
-    <!-- Product section-->
-    <section class="py-5">
-        <div class="container px-4 px-lg-5 my-5">
-            <div class="row gx-4 gx-lg-5 align-items-center">
-                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0"
-                        src="imagenes/<?php echo $row["producto_foto"] ?>" alt="..." /></div>
-                <div class="col-md-6">
-
-                    <h1 class="display-5 fw-bolder"><?php echo $row["producto_nombre"] ?></h1>
-                    <div class="fs-5 mb-5">
-                        <!-- <%
-                                        if (producto.getProducto_precio()==producto.getProducto_precio_venta()) {
-                                     %>
-                                     <div ><%= producto.getProducto_precio()%> €</div>
-                                     <%
-                                            } else {
-                                      %>    
-                                      <div class="text-decoration-line-through"><%= producto.getProducto_precio()%> €</div>
-                                    <%= Math.round(producto.getProducto_precio_venta()*100.0)/100.0 %> €
-                                    <%
-                                            }
-                                    %> -->
-
+    <div class="col-md-6 mx-auto p-0">
+        <div class="login-box">
+            <div class="login-snip"> <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label
+                    for="tab-1" class="tab">Login</label> <input id="tab-2" type="radio" name="tab"
+                    class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+                <div class="login-space">
+                    <div class="login">
+                        <div class="group"> <label for="user" class="label">Username</label> <input type="text"
+                                class="input" name="user" placeholder="Enter your username"> </div>
+                        <div class="group"> <label for="pass" class="label">Password</label> <input type="password"
+                                class="input" name="pass" data-type="password" placeholder="Enter your password"> </div>
+                        <div class="group"> <input type="submit" class="button" value="Sign In"> </div>
                     </div>
-                    <p class="lead"><?php echo $row["producto_detalle"] ?></p>
-                    <div class="d-flex">
-                        <form action="agregarProducto" method="POST">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="number"
-                                name="cantidad" min="1" value="1" style="max-width: 5rem" />
-                            <input type="text" hidden value="<?php echo $productoId ?>" name="idProducto" />
-                            <button class="btn btn-outline-dark flex-shrink-0 mt-3" type="submit">
-                                <i class="bi-cart-fill me-1"></i>
-                                Añadir al Carrito
-                            </button>
+                    <div class="sign-up-form">
+                        <form>
+                            <div class="group"> <label for="user" class="label">Nombre</label> <input name="firstName"
+                                    type="text" class="input" placeholder="Create your FirstName"> </div>
+                            <div class="group"> <label for="user" class="label">Apellidos</label> <input name="lastName"
+                                    type="text" class="input" placeholder="Create your LastName"> </div>
+                            <div class="group"> <label for="pass" class="label">Contraseña</label> <input name="pass"
+                                    type="password" class="input" data-type="password"
+                                    placeholder="Create your password"> </div>
+                            <div class="group"> <label for="pass" class="label">Repite Contraseña</label> <input
+                                    name="passRep" type="password" class="input" data-type="password"
+                                    placeholder="Repeat your password"> </div>
+                            <div class="group"> <label for="pass" class="label">Direccion de Correo Electronico</label>
+                                <input name="email" type="text" class="input" placeholder="Enter your email address">
+                            </div>
+                            <div class="group"> <label for="pass" class="label">Direccion</label> <input name="email"
+                                    type="text" class="input" placeholder="Enter your email address"> </div>
+                            <div class="group"> <label for="pass" class="label">Telefono</label> <input name="email"
+                                    type="number" class="input" placeholder="Enter your email address"> </div>
+                            <div class="group"> <input type="submit" class="button" value="Sign Up"> </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-
-    <footer class="py-5" style="background-color: #0198f1 ">
+    </div>
+    </div>
+    <footer class="py-5 " style="background-color: #0198f1;">
         <div class="container">
             <p class="m-0 text-center text-white">JOSE ANTONIO MARQUEZ GONZALEZ</p>
         </div>
     </footer>
-    <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 
 </html>
