@@ -9,7 +9,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title><?php echo $row["producto_nombre"] ?></title>
+    <title>Iniciar Sesion</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -83,32 +83,36 @@ session_start();
                     class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
                 <div class="login-space">
                     <div class="login">
-                        <div class="group"> <label for="user" class="label">Username</label> <input type="text"
-                                class="input" name="user" placeholder="Enter your username"> </div>
-                        <div class="group"> <label for="pass" class="label">Password</label> <input type="password"
-                                class="input" name="pass" data-type="password" placeholder="Enter your password"> </div>
-                        <div class="group"> <input type="submit" class="button" value="Sign In"> </div>
+                        <form action="comprobarUsuario.php" method="POST">
+                        <input type="hidden"  name="eleccion" value="login">
+                        <div class="group"> <label for="email" class="label">Correo Electronico</label> <input type="text"
+                                class="input" name="email" placeholder="Introduce tu correo" required> </div>
+                        <div class="group"> <label for="pass" class="label">Contraseña</label> <input type="password"
+                                class="input" name="pass" data-type="password" placeholder="Introduce tu contraseña" required> </div>
+                        <div class="group"> <input type="submit" class="button" value="Enviar"> </div>
+                    </form>
                     </div>
                     <div class="sign-up-form">
-                        <form>
-                            <div class="group"> <label for="user" class="label">Nombre</label> <input name="firstName"
-                                    type="text" class="input" placeholder="Create your FirstName"> </div>
-                            <div class="group"> <label for="user" class="label">Apellidos</label> <input name="lastName"
-                                    type="text" class="input" placeholder="Create your LastName"> </div>
+                        <form action="comprobarUsuario.php" method="POST">
+                        <input type="hidden"  name="eleccion" value="registro">
+                            <div class="group"> <label for="user" class="label">Nombre</label> <input name="nombre"
+                                    type="text" class="input" placeholder="Introduce tu nombre" required> </div>
+                            <div class="group"> <label for="user" class="label">Apellidos</label> <input name="apellidos"
+                                    type="text" class="input" placeholder="Introduce tus apellidos" required> </div>
                             <div class="group"> <label for="pass" class="label">Contraseña</label> <input name="pass"
                                     type="password" class="input" data-type="password"
-                                    placeholder="Create your password"> </div>
-                            <div class="group"> <label for="pass" class="label">Repite Contraseña</label> <input
+                                    placeholder="Introduce tu contraseña" required> </div>
+                            <div class="group"> <label for="passRep" class="label">Repite Contraseña</label> <input
                                     name="passRep" type="password" class="input" data-type="password"
-                                    placeholder="Repeat your password"> </div>
-                            <div class="group"> <label for="pass" class="label">Direccion de Correo Electronico</label>
-                                <input name="email" type="text" class="input" placeholder="Enter your email address">
+                                    placeholder="Repite tu contraseña" required> </div>
+                            <div class="group"> <label for="email" class="label">Direccion de Email</label>
+                                <input name="email" type="text" class="input" placeholder="Introduce tu email" required>
                             </div>
-                            <div class="group"> <label for="pass" class="label">Direccion</label> <input name="email"
-                                    type="text" class="input" placeholder="Enter your email address"> </div>
-                            <div class="group"> <label for="pass" class="label">Telefono</label> <input name="email"
-                                    type="number" class="input" placeholder="Enter your email address"> </div>
-                            <div class="group"> <input type="submit" class="button" value="Sign Up"> </div>
+                            <div class="group"> <label for="direccion" class="label">Direccion</label> <input name="direccion"
+                                    type="text" class="input" placeholder="Introduce tu direccion" required> </div>
+                            <div class="group"> <label for="telefono" class="label">Telefono</label> <input name="telefono"
+                                    type="number" class="input" placeholder="Introduce tu telefono" required> </div>
+                            <div class="group"> <input type="submit" class="button" value="Registrarse"> </div>
                         </form>
                     </div>
                 </div>
