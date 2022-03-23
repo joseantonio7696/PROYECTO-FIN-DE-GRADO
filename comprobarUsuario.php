@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $contrasena = test_input($_POST["pass"]);
             $contrasenaHash = password_hash($contrasena,PASSWORD_DEFAULT);
 
-            $direccion=test_input($_POST["email"]);
+            $direccion=test_input($_POST["direccion"]);
 
             $telefono=test_input($_POST["telefono"]);
           

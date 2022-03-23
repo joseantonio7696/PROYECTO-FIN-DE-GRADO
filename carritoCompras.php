@@ -100,7 +100,7 @@ session_start();
             </div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <form class="d-flex" action="carritoCompras.php">
+                    <form class="d-flex" action="carritoCompras.jsp">
                         <button class="btn btn-outline-dark" type="submit">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 class="bi bi-cart2" viewBox="0 0 16 16">
@@ -139,73 +139,91 @@ session_start();
             </div>
         </div>
     </nav>
+    <div class="container">
+        <div class="text-center mt-5">
+            <?php
+                    if (!isset($_SESSION["carrito"]) || count($_SESSION["carrito"])==0) {
+                ?>
+            <h4>Añade articulos a tu carrito en nuestra tienda online</h4>
+            <?php                    } else { ?>
+            <?php
+                if (count($_SESSION["carrito"])==1) {                                           
+                ?>
+            <h4 class="mb-sm-4 mb-3">Tu carrito de la compra contiene <?php echo count($_SESSION["carrito"])?> producto
+            </h4>
+            <?php
+                } else {
+                    ?>
+            <h4 class="mb-sm-4 mb-3">Tu carrito de la compra contiene <?php echo count($_SESSION["carrito"])?> productos
+            </h4>
+            <?php } ?>
+            <div class="table-responsive">
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Producto</th>
+                            <th>Precio</th>
 
+                            <th>Cambiar Cantidad</th>
+                            <th>Precio Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                                 $costeTotalPedido = 0;
 
-    <div class="col-md-6 mx-auto p-0">
+                                 foreach ($_SESSION["carrito"] as $indice => $arreglo) {
+                         
+                                    $precioTotalProducto = $_SESSION["carrito"][$indice]["precioProducto"]* $_SESSION["carrito"][$indice]["cantidadProducto"];
+                                    $costeTotalPedido += (int) $precioTotalProducto;
+                            ?>
+                        <tr>
+                            <td><img src="./imagenes/<?php echo $_SESSION["carrito"][$indice]["fotoProducto"] ?>"
+                                    width="65px" height="65px" /></td>
+                            <td><?php echo $_SESSION["carrito"][$indice]["nombreProducto"]  ?></td>
+                            <td><?php echo $_SESSION["carrito"][$indice]["precioProducto"] ?> €</td>
 
-
-        <div class="login-box" style="position:relative">
-
-
-
-            <div class="login-snip"> <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label
-                    for="tab-1" class="tab">Login</label> <input id="tab-2" type="radio" name="tab"
-                    class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
-
-                <div class="login-space">
-                    <div id="error" class="alert alert-danger ocultar" role="alert">
-                        Las Contraseñas no coinciden, vuelve a intentarlo
-                    </div>
-                    <div class="login">
-                        <form action="comprobarUsuario.php" method="POST">
-                            <input type="hidden" name="eleccion" value="login">
-                            <div class="group"> <label for="email" class="label">Correo Electronico</label> <input
-                                    type="text" class="input" name="email" placeholder="Introduce tu correo" required>
-                            </div>
-                            <div class="group"> <label for="pass" class="label">Contraseña</label> <input
-                                    type="password" class="input" name="pass" data-type="password"
-                                    placeholder="Introduce tu contraseña" required> </div>
-                            <div class="group"> <input type="submit" class="button" value="Enviar"> </div>
-                        </form>
-                    </div>
-                    <div class="sign-up-form">
-                        <form action="comprobarUsuario.php" name="formularioRegist" method="POST"
-                            onsubmit="return comprobarClave()">
-                            <input type="hidden" name="eleccion" value="registro">
-                            <div class="group"> <label for="user" class="label">Nombre</label> <input name="nombre"
-                                    type="text" class="input" placeholder="Introduce tu nombre" required> </div>
-                            <div class="group"> <label for="user" class="label">Apellidos</label> <input
-                                    name="apellidos" type="text" class="input" placeholder="Introduce tus apellidos"
-                                    required> </div>
-                            <div class="group"> <label for="pass" class="label">Contraseña</label> <input name="pass"
-                                    type="password" class="input" data-type="password"
-                                    placeholder="Introduce tu contraseña" required> </div>
-                            <div class="group"> <label for="passRep" class="label">Repite Contraseña</label> <input
-                                    name="passRep" type="password" class="input" data-type="password"
-                                    placeholder="Repite tu contraseña" required> </div>
-                            <div class="group"> <label for="email" class="label">Direccion de Email</label>
-                                <input name="email" type="text" class="input" placeholder="Introduce tu email" required>
-                            </div>
-                            <div class="group"> <label for="direccion" class="label">Direccion</label> <input
-                                    name="direccion" type="text" class="input" placeholder="Introduce tu direccion"
-                                    required> </div>
-                            <div class="group"> <label for="telefono" class="label">Telefono</label> <input
-                                    name="telefono" type="number" class="input" placeholder="Introduce tu telefono"
-                                    required> </div>
-                            <div class="group"> <input type="submit" class="button" value="Registrarse"> </div>
-                        </form>
-                    </div>
-                </div>
+                            <form name="formCantidad" action="cambiarCantidades.php" method="POST">
+                                <input type="hidden" name="idProducto" value="<?php echo $indice?>" />
+                                <td><input type="number" min="1" name="cantidadNueva" size="3"
+                                        value="<?php echo $_SESSION["carrito"][$indice]["cantidadProducto"] ?>" />
+                                    <button class="btn btn-outline-primary" style="margin-left: 5px"
+                                        type="submit">Modificar Cantidad
+                                        <?php echo $_SESSION["carrito"][$indice]["nombreProducto"]  ?></button></td>
+                            </form>
+                            <td><?php echo $precioTotalProducto ?> €</td>
+                            <td><a class="btn btn-danger"
+                                    href="eliminarProducto.php?idProducto=<?php echo $indice?>">Eliminar</a></td>
+                        </tr>
+                        <?php 
+                                    }   
+                                
+                        ?>
+                    </tbody>
+                </table>
             </div>
+
+            <p>Su pedido tiene un conste total de <?php echo $costeTotalPedido?> €</p>
+
+            <?php if (isset($_SESSION["sesion"])) {
+                ?>
+            <h2>DATOS DEL ENVIO DEL PEDIDO</h2>
+            <p>Nombre: <?php echo $_SESSION["sesion"]["usuario_nombre"] ?></p>
+            <p>Apellidos: <?php echo $_SESSION["sesion"]["usuario_apellidos"] ?></p>
+            <p>Telefono: <?php echo $_SESSION["sesion"]["usuario_telefono"] ?></p>
+            <p>Direccion: <?php echo $_SESSION["sesion"]["usuario_direccion"] ?></p>
+            <a class="btn btn-success" href="tramitarPedido?costeTotalPedido=<%=costeTotalPedido%>">Tramitar
+                Pedido</a>
+            <?php } else { ?>
+
+            <p>Tiene que iniciar sesion como usuario de alta para poder hacer un pedido correctamente.</p>
+
+            <?php } ?>
         </div>
-    </div>
-    </div>
-    <footer class="py-5 " style="background-color: #0198f1;">
-        <div class="container">
-            <p class="m-0 text-center text-white">JOSE ANTONIO MARQUEZ GONZALEZ</p>
-        </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <?php }?>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>

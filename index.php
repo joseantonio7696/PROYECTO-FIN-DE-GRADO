@@ -2,10 +2,6 @@
 
 session_start();
 
-if (!isset($_SESSION["contador"])) {
-    $_SESSION["contador"] = 0;
-}
-
 
 
 
@@ -71,7 +67,14 @@ if (!isset($_SESSION["contador"])) {
                                     d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
                             </svg>
                             <span class="badge bg-dark text-white ms-1 rounded-pill">
-                                <?php echo $_SESSION["contador"] ?>
+                                <?php 
+
+                                if (isset($_SESSION["carrito"])) {
+                                    echo count($_SESSION["carrito"]);
+                                } else {
+                                    echo "0";
+                                }                               
+                                 ?>
                             </span>
                         </button>
                     </form>
@@ -179,26 +182,26 @@ if (!isset($_SESSION["contador"])) {
 
                 ?>
 
-                
+
             </div>
 
             <nav aria-label="...">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item">
-                            <a class="page-link" href="./?page=1" tabindex="-1">Anterior</a>
-                        </li>
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" href="./?page=1" tabindex="-1">Anterior</a>
+                    </li>
 
-                        <?php
+                    <?php
           for ($page = 1; $page <= $total_pages; $page++) {
             echo "<li class='page-item'><a class='page-link' href='./?page=" . $page . "'>" . $page . "</a></li>";
           }
           ?>
-                        <li class="page-item">
-                            <a class="page-link" href="./?page=<?php echo $total_pages ?>">Último</a>
-                        </li>
+                    <li class="page-item">
+                        <a class="page-link" href="./?page=<?php echo $total_pages ?>">Último</a>
+                    </li>
 
-                    </ul>
-                </nav>
+                </ul>
+            </nav>
         </div>
         </div>
     </section>
@@ -232,4 +235,3 @@ if (!isset($_SESSION["contador"])) {
 </body>
 
 </html>
-
