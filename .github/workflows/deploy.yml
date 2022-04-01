@@ -1,10 +1,9 @@
 name: PHP Deploy FTP
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
-    branches: [ master ]
+    branches: 
+      - master
 
 permissions:
   contents: read
