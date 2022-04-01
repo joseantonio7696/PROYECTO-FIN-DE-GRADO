@@ -5,7 +5,7 @@ on:
   push:
     branches: 
       - master
-    types: [closed]
+#    types: [closed]
 
 permissions:
   contents: read
