@@ -20,9 +20,9 @@ jobs:
     - name: Publicando en FTP
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
-        server: ${{ env.SERVER_SECRET }}
-        username: ${{ env.USERNAME_SECRET }}
-        password: ${{ env.PASSWORD_SECRET }}
+        server: ${{ secrets.SERVER_SECRET }}
+        username: ${{ secrets.USERNAME_SECRET }}
+        password: ${{ secrets.PASSWORD_SECRET }}
 
 #  build:
 
