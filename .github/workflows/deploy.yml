@@ -22,6 +22,7 @@ jobs:
         server: ${{ env.SERVER_SECRET }}
         username: ${{ env.USERNAME_SECRET }}
         password: ${{ env.PASSWORD_SECRET }}
+
 #  build:
 
 #    runs-on: ubuntu-latest
