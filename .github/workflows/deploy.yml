@@ -2,7 +2,9 @@ name: PHP Deploy FTP
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: 
+      - master
+    types: [closed]
 
 permissions:
   contents: read
@@ -18,9 +20,10 @@ jobs:
     - name: Publicando en FTP
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
-        server: ${{ PRO.SERVER_SECRET }}
-        username: ${{ PRO.USERNAME_SECRET }}
-        password: ${{ PRO.PASSWORD_SECRET }}
+        server: ${{ secrets.SERVER_SECRET }}
+        username: ${{ secrets.USERNAME_SECRET }}
+        password: ${{ secrets.PASSWORD_SECRET }}
+
 #  build:
 
 #    runs-on: ubuntu-latest
