@@ -13,8 +13,16 @@ jobs:
     name:  Deploy
     runs-on: ubuntu-latest
     steps:
+    
     - name: Obteniendo rama Master
       uses: actions/checkout@v2
+    
+    - name: Find and Replace CONNECTION STRING DB
+      uses: jacobtomlinson/gha-find-replace@v2
+      with:
+        find: "'localhost', 'root', '', 'decatlon'"
+        replace: ${{ secrets.CONNECTIONSTRING_SECRET }}
+        include: "db_decatlon.php" 
     
     - name: Publicando en FTP
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
