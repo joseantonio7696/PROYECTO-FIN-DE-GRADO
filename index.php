@@ -109,7 +109,7 @@ session_start();
     <header class="py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white rounded-pill" style="background-color: #0198f1 ">
-                <h1 class="display-4 fw-bolder">PRODUCTOS DE TODO NUESTRO CATALOGO</h1>
+                <h1 class="display-4 fw-bolder">PRODUCTOS DE TODO NUESTRO CATALOGO PRUEBA SENCILLA</h1>
                 <p class="lead fw-normal text-white-50 mb-0">Aqui teneis todo nuestro catalogo de productos de nuestra
                     tienda online</p>
             </div>
