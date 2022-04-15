@@ -2,9 +2,29 @@
 
 session_start();
 
-$_SESSION["tramitado"]=0;
+$categoria_id=$_REQUEST["categoria_id"];
 
+switch ($categoria_id) {
+    case '1':
+        $tituloSeccion="Accesorios para el entreno";
+        break;
 
+        case '2':
+            $tituloSeccion="Materiales deportivos";
+            break;
+
+            case '3':
+                $tituloSeccion="Entrenamiento funcional";
+                break;
+
+                case '4':
+                    $tituloSeccion="Protecciones Deportivas";
+                    break;
+
+                    case '5':
+                        $tituloSeccion="Singular Wod";
+                        break;
+}
 
 ?>
 <!DOCTYPE html>
@@ -109,9 +129,8 @@ $_SESSION["tramitado"]=0;
     <header class="py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white rounded-pill" style="background-color: #0198f1 ">
-                <h1 class="display-4 fw-bolder">TODOS NUESTROS PRODUCTOS</h1>
-                <p class="lead fw-normal text-white-50 mb-0">Aqui teneis todo nuestro catalogo de productos de nuestra
-                    tienda online</p>
+                <h1 class="display-4 fw-bolder"><?php echo $tituloSeccion ?></h1>
+                <p class="lead fw-normal text-white-50 mb-0">Aqui teneis todos los productos disponibles de esta categoria</p>
             </div>
         </div>
     </header>
@@ -126,10 +145,10 @@ $_SESSION["tramitado"]=0;
 
                 include "./db_decatlon.php";
 
-                $per_page_record = 10;
+                $per_page_record = 4;
 
 
-                $consulta = mysqli_query($conexion, "SELECT * FROM producto" /* ORDER by RAND() LIMIT 9" */) or
+                $consulta = mysqli_query($conexion, "SELECT * FROM producto WHERE categoria_id= $categoria_id ") or
                     die("Problemas en el select:" . mysqli_error($conexion));
 
                     $reg = mysqli_num_rows($consulta);
@@ -146,7 +165,7 @@ $_SESSION["tramitado"]=0;
 
 
             
-                    $consulta = mysqli_query($conexion, "SELECT * FROM producto LIMIT " . $start_from . "," . "$per_page_record") or
+                    $consulta = mysqli_query($conexion, "SELECT * FROM producto WHERE categoria_id= $categoria_id LIMIT " . $start_from . "," . "$per_page_record") or
                     die("Problemas en el select:" . mysqli_error($conexion));
 
                 while ($row = mysqli_fetch_assoc($consulta)) {
@@ -188,16 +207,16 @@ $_SESSION["tramitado"]=0;
             <nav aria-label="...">
                 <ul class="pagination justify-content-center">
                     <li class="page-item">
-                        <a class="page-link" href="./?page=1" tabindex="-1">Anterior</a>
+                        <a class="page-link" href="./categorias.php?categoria_id=<?php echo $categoria_id ?> & page=1" tabindex="-1">Anterior</a>
                     </li>
 
                     <?php
           for ($page = 1; $page <= $total_pages; $page++) {
-            echo "<li class='page-item'><a class='page-link' href='./?page=" . $page . "'>" . $page . "</a></li>";
+            echo "<li class='page-item'><a class='page-link' href='./categorias.php?categoria_id=$categoria_id & page=" . $page . "'>" . $page . "</a></li>";
           }
           ?>
                     <li class="page-item">
-                        <a class="page-link" href="./?page=<?php echo $total_pages ?>">Último</a>
+                        <a class="page-link" href="./categorias.php?categoria_id=<?php echo $categoria_id ?> & page=<?php echo $total_pages ?>">Último</a>
                     </li>
 
                 </ul>
@@ -206,28 +225,6 @@ $_SESSION["tramitado"]=0;
         </div>
     </section>
 
-    <footer class="py-5" style="background-color: #0198f1; margin-top: 30px">
-
-        <button class="btn btn-light position-relative top-50 start-50 translate-middle" type="button"
-            data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
-            aria-controls="collapseExample">
-            ¿Donde estamos?
-        </button>
-
-        <div class="container text-center">
-            <div class="collapse" id="collapseExample">
-
-                <div id="map" class="border border-primary mt-3">
-                </div>
-
-                <script
-                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaKdY_hkr3T1gjgR4weiIZrlJJ4a7kqr0&callback=initMap&v=weekly"
-                    async></script>
-
-            </div>
-
-        </div>
-    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
