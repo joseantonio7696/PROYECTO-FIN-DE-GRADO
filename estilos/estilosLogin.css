@@ -194,3 +194,16 @@ a {
     color: #ffffff
 }
 
+.modal1{
+	position: fixed;
+	display: flex;
+	z-index: 1;
+	width: 100%;
+	top: 0;
+	left: 0;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.7);
+	height: 100%;
+}
+
