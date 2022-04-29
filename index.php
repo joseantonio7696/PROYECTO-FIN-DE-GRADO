@@ -55,6 +55,18 @@ $_SESSION["tramitado"]=0;
                     <li><a href="categorias.php?categoria_id=4" class="list-group-item list-group-item-action">Protecciones
                             deportivas</a></li>
                     <li><a href="categorias.php?categoria_id=5" class="list-group-item list-group-item-action ">Singular Wod</a></li>
+                    
+                    <!-- ZONA DE ADMINISTRADOR -->
+                    <?php
+
+                    if (isset($_SESSION["sesion"]) && $_SESSION["sesion"]["usuario_tipo"]=="Administrador") {
+                    ?>
+                    <li><a href="administrador.php" class="list-group-item list-group-item-action ">Zona Administradora</a></li>
+                    <?php
+                     }
+                    ?>
+                    <!-- /ZONA DE ADMINISTRADOR -->
+
                 </ul>
             </div>
             
