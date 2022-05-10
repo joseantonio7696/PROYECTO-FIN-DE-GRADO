@@ -114,7 +114,7 @@ if (!isset($_SESSION["sesion"]) && $_SESSION["sesion"]["usuario_tipo"] != "Admin
             <h2>Bienvenido Señor <?php echo $_SESSION["sesion"]["usuario_nombre"] ?>, aqui podra ver los listado de pedidos con las diferentes formas que le ofrecemos.</h2>
 
             <div class="accordion accordion-flush mt-5" id="accordionFlushExample">
-                <div class="accordion-item">
+                <!-- <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                             Listado de Pedidos entre dos fechas
@@ -136,23 +136,33 @@ if (!isset($_SESSION["sesion"]) && $_SESSION["sesion"]["usuario_tipo"] != "Admin
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingTwo">
                         <button class="accordion-button collapsed" onclick="showUser()" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                            Listado de Pedidos de un Cliente
+                            Listado de Clientes
                         </button>
                     </h2>
                     <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
-                            <form action="listadoPedidos.php" method="POST">
+                            <form action="listadoClientes.php" method="POST">
                                 <div class="mb-3">
-                                    <label for="cliente" class="form-label">Seleccione el Cliente</label>
+                                    <label for="cliente" class="form-label">Seleccione el Cliente:</label>
                                     <select class="form-select" id="listaDesplegable" name="idCliente" aria-label="Default select example">
                                     </select>
                                 </div>
-                                <input type="text" name="opcion" value="cliente" hidden />
+                                <div class="mb-3">
+                                    <label for="cliente" class="form-label">Tipo de Cliente:</label>
+                                    <input type="text" class="form-control"  name="tipoCliente" aria-label="Default select example">
+                                    </input>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cliente" class="form-label">Email Cliente</label>
+                                    <input type="text" class="form-control"  name="emailCliente" aria-label="Default select example">
+                                    </input>
+                                </div>
+                                <!-- <input type="text" name="opcion" value="cliente" hidden /> -->
                                 <button type="submit" class="btn btn-primary">Mostrar Listado</button>
                             </form>
 
