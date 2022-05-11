@@ -181,7 +181,7 @@ if (!isset($_SESSION["sesion"]) && $_SESSION["sesion"]["usuario_tipo"] != "Admin
                             <form action="listadoPedidos.php" method="POST">
                                 <div class="mb-3">
                                     <label for="cliente" class="form-label">Producto a Buscar:</label>
-                                    <input type="text" id="cajaAutocompletar" onkeyup="autocompletar(this.value)" class="form-control" name="cliente" placeholder="Escriba aqui su producto"></input>
+                                    <input type="text" id="cajaAutocompletar" onkeyup="autocompletar(this.value)" class="form-control" name="producto" placeholder="Escriba aqui su producto"></input>
                                     <div id="opcion"></div>
                                 </div>
                                 <input type="text" name="opcion" value="producto" hidden />

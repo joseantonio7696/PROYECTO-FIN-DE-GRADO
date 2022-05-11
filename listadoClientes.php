@@ -107,7 +107,7 @@ $consulta = mysqli_query($conexion, $sql) or
     <div class="container">
         <div class="text-center mt-5">
 
-            <form action="./borrado.php" method="POST">
+            <form action="./borradoUsuarios.php" method="POST">
 
                 <table class="table table-hover table-responsive">
                     <thead class="thead-dark">
@@ -120,7 +120,6 @@ $consulta = mysqli_query($conexion, $sql) or
                             <th>Correo electronico</th>
                             <th>Numero Telefono</th>
                             <th>Direccion</th>
-                            <th></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -136,14 +135,14 @@ $consulta = mysqli_query($conexion, $sql) or
                             echo "<td>" . $reg['usuario_email'] . "</td>";
                             echo "<td>" . $reg['usuario_telefono'] . "</td>";
                             echo "<td>" . $reg['usuario_direccion'] . "</td>";
-                            echo "<td><a class='btn btn-danger' href='#'>Eliminar Usuario</a></td>";
-                            echo "<td><a class='btn btn-info' href='#'>Cambiar Tipo</a></td>";
-                            
+                            echo "<td><a class='btn btn-info' href='modificarTipoUsuario.php?idUsuario=".$reg['usuario_id']."&tipoUsuario=".$reg['usuario_tipo']."'>Cambiar Tipo</a></td>";
                             echo "</tr>";
                         }
                         ?>
                     </tbody>
                 </table>
+                <input type="submit" class="btn btn-danger" value="Eliminar Usuarios Seleccionados"/>
+            </form>
         </div>
     </div>
 
