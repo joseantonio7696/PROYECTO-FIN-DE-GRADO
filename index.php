@@ -4,8 +4,6 @@ session_start();
 
 $_SESSION["tramitado"]=0;
 
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +22,6 @@ $_SESSION["tramitado"]=0;
     <script src="./javaScript.js"></script>
     <style>
     #map {
-
 
         height: 500px;
     }
@@ -148,7 +145,8 @@ $_SESSION["tramitado"]=0;
 
                     $total_pages = ceil($reg / $per_page_record);
                     
-                    if (!isset($_GET['page'])) {
+                    if (!isset($_GET['pa
+                    e'])) {
                       $page = 1;
                     } else {
                       $page  = $_GET['page'];
