@@ -3,6 +3,9 @@
 $id=$_REQUEST["idUsuario"];
 $tipoUsuario=$_REQUEST["tipoUsuario"];
 
+echo $id;
+echo $tipoUsuario;
+
 include "./db_decatlon.php";
 
 if ($tipoUsuario=="Cliente") {
@@ -13,7 +16,7 @@ if ($tipoUsuario=="Cliente") {
     or die("Problemas en el select " . mysqli_error($conexion));
 }
 
-    mysqli_close($conexion);
+    
     $url = "./listadoClientes.php";
     header("HTTP/1.1 301 Moved Permanently");
     header("Location: ".$url);

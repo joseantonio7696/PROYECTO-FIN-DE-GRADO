@@ -91,14 +91,11 @@ $consulta = mysqli_query($conexion, $sql) or
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #0198f1 ">
         <div class="container-fluid">
             <a class="navbar-brand" href="./administrador.php">
-
                 <img src="imagenes/Decathlon_Logo.png" alt="" width="150" height="50">
-
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-
-                    <li class="nav-item"><a class="nav-link fw-bold" href="cerrarSesion">Cerrar Sesion</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="cerrarSesion.php">Cerrar Sesion</a></li>
                 </ul>
             </div>
         </div>
