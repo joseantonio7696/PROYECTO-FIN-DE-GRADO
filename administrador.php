@@ -94,7 +94,7 @@ if (!isset($_SESSION["sesion"]) && $_SESSION["sesion"]["usuario_tipo"] != "Admin
     <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #0198f1 ">
         <div class="container-fluid">
-            <a class="navbar-brand" href="paginaInicioAdmin.jsp">
+            <a class="navbar-brand" href="./">
 
                 <img src="imagenes/Decathlon_Logo.png" alt="" width="150" height="50">
 
@@ -102,7 +102,7 @@ if (!isset($_SESSION["sesion"]) && $_SESSION["sesion"]["usuario_tipo"] != "Admin
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
-                    <li class="nav-item"><a class="nav-link fw-bold" href="cerrarSesion">Cerrar Sesion</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="cerrarSesion.php">Cerrar Sesion</a></li>
                 </ul>
             </div>
         </div>
@@ -111,7 +111,7 @@ if (!isset($_SESSION["sesion"]) && $_SESSION["sesion"]["usuario_tipo"] != "Admin
     <div class="container">
         <div class="text-center mt-5">
 
-            <h2>Bienvenido Señor <?php echo $_SESSION["sesion"]["usuario_nombre"] ?>, aqui podra ver los listado de pedidos con las diferentes formas que le ofrecemos.</h2>
+            <h2>Bienvenido Señor <?php echo $_SESSION["sesion"]["usuario_nombre"] ?>, aqui podra ver los tipos de listados que le ofrecemos.</h2>
 
             <div class="accordion accordion-flush mt-5" id="accordionFlushExample">
                 <!-- <div class="accordion-item">
